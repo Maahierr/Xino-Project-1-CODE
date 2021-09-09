@@ -4,4 +4,6 @@
 
 - [Static Website](https://maahierr.github.io/Xino-Project-1/)
 
+- [Static Website Code](https://github.com/Maahierr/Xino-Project-1)
+
 - Database id: xino & password: xino
