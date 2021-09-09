@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Alienware PCs</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Klee+One:wght@600&family=Rampart+One&display=swap');
+
+		* {
+			margin: 0px;
+			padding: 0px;
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			font-family: 'Noto Sans KR', sans-serif;
+			width: 100%;
+		}
+
+		.sidebar {
+			height: 100%;
+			width: 0;
+			position: fixed;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			background-color: #111;
+			overflow-x: hidden;
+			transition: 0.5s;
+			padding-top: 60px;
+		}
+
+		.sidebar a {
+			padding: 8px 8px 8px 32px;
+			text-decoration: none;
+			font-size: 25px;
+			color: #818181;
+			display: block;
+			transition: 0.5s;
+		}
+
+		.sidebar a:hover {
+			color: #ff0000;
+		}
+
+		.sidebar .closebtn {
+			position: absolute;
+			top: 0;
+			right: 25px;
+			font-size: 36px;
+			margin-left: 50px;
+		}
+
+		.openbtn {
+			font-size: 25px;
+			cursor: pointer;
+			color: black;
+			background-color: rgb(255, 255, 255);
+			border: none;
+			transition: 0.5s;
+		}
+
+		.openbtn:hover {
+			color: #ff0000;
+		}
+
+		#openbtn {
+			transition: margin-left 1s;
+			padding: 16px;
+		}
+
+		@media screen and (max-height: 450px) {
+			.sidebar {
+				padding-top: 15px;
+			}
+			.sidebar a {
+				font-size: 18px;
+			}
+		}
+
+		#textColor {
+			text-align: center;
+			font-family: 'Rampart One', cursive;
+			color: rgb(0, 0, 0);
+			text-shadow: 0 0 7px #fff,
+			0 0 10px #fff,
+			0 0 21px #fff,
+			0 0 42px #0fa,
+			0 0 82px #0fa,
+			0 0 92px #0fa,
+			0 0 102px #0fa,
+			0 0 151px #0fa;
+		}
+
+		#pc {
+			width: 100%;
+			font-family: 'Lobster', cursive;
+		}
+
+		#content {
+			padding-top: 2px;
+			background-color: #f1f1f1;
+			width: 100%;
+		}
+
+		.imgs {
+			width: 100%;
+		}
+
+		#visibleImg {
+			padding-top: 20px;
+			float: left;
+			width: 50%;
+		}
+
+		#image {
+			width: 30%;
+		}
+
+		.prop {
+			list-style-type: none;
+			padding-top: 20px;
+			overflow-y: scroll;
+			float: left;
+			width: 50%;
+		}
+
+		.prop li {
+			padding: 6px;
+		}
+
+		#i1:hover,
+		#i2:hover,
+		#i3:hover,
+		#i4:hover,
+		#i5:hover {
+			border: 2px solid black;
+		}
+
+		.btn {
+			cursor: pointer;
+			background: rgb(81, 177, 255);
+			border: 3px solid white;
+			width: 100px;
+			padding: 8px;
+			border-radius: 10px;
+			color: white;
+			font-family: 'Patrick Hand', cursive;
+			transition: 0.5s;
+		}
+
+		.btn:hover {
+			background: rgb(96, 96, 255);
+			box-shadow: 5px 5px 5px rgb(96, 96, 255);
+		}
+
+		#contact {
+			font-family: 'Klee One', cursive;
+			border-radius: 5px;
+			background-color: #fffbfb;
+			padding: 20px;
+			margin: 5px;
+		}
+
+		input[type=text],
+		input[type=email],
+		input[type=phone],
+		textarea {
+			width: 100%;
+			padding: 12px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			margin-top: 6px;
+			margin-bottom: 16px;
+			resize: vertical;
+		}
+
+		#more {
+			font-family: 'Lobster', cursive;
+			display: inline;
+			background-color: #fffbfb;
+		}
+
+		#more img {
+			width: 250px;
+			height: 250px;
+			opacity: 0.9;
+		}
+
+		#up {
+			visibility: hidden;
+			color: rgb(172, 172, 172);
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			z-index: 99;
+			font-size: 25px;
+			cursor: pointer;
+			text-decoration: none;
+			transition: 0.5s;
+		}
+
+		#up:hover {
+			color: red;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="home"></div>
+	<div id="sidebar" class="sidebar">
+		<a href="#home" onclick="closeNav()">Home</a>
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+		<a href="#pc" onclick="closeNav()">PCs</a>
+		<a href="#contact" onclick="closeNav()">Contact</a>
+		<a href="#more" onclick="closeNav()">MORE....</a>
+	</div>
+
+	<div>
+		<button id="openbtn" class="openbtn" onclick="openNav()">&#9776</button>
+        <center>
+            <a href="/" onclick="closeNav()"><img id="logo" src="static/logo.png" width="50%" height="auto"></a>
+        </center>
+    </div>
+
+    <div class="container" onclick="closeNav()">
+        <div id="pc">
+            <h1 style="text-align:center;">Alienware m17 R4</h1><br><br>
+            <h1 id="textColor">GET THE BEST GAMING EXPERIENCE</h1><br><br>
+            <center><a href="https://www.amazon.in/Alienware-17-3-inch-Gaming-Laptop/dp/B08XFQ9JQ3" id="buy"
+                    target="_blank"><button class="btn">Buy Now</button>
+                </a></center><br><br><br>
+        </div>
+        <div id="content">
+
+            <br><br>
+            <div class="imgs">
+                <center>
+                    <div id="visibleImg">
+                        <img src="" id="image">
+                    </div>
+                </center>
+            </div>
+
+
+
+            <ul class="prop">
+                <li>
+                    <img onerror="this.style.display='none'"
+                        src="//afcs.dellcdn.com/csb/configux/bundles/1.0.5.25618/images/processor-blk.svg" width="20"
+                        height="20" alt="processor" style="vertical-align: middle;">&nbsp;&nbsp;
+                    10th Generation Intel® Core™ i7-10870H (8-Core, 16MB Cache, up to 5.0GHz Max Turbo Frequency)
+                </li>
+                <li>
+                    <img onerror="this.style.display='none'"
+                        src="//afcs.dellcdn.com/csb/configux/bundles/1.0.5.25618/images/laptop-blk.svg" width="20"
+                        height="20" alt="laptop" style="vertical-align: middle;">&nbsp;&nbsp;
+                    Windows 10 Home English
+                </li>
+                <li>
+                    <img onerror="this.style.display='none'"
+                        src="//afcs.dellcdn.com/csb/configux/bundles/1.0.5.25618/images/videocard-blk.svg" width="20"
+                        height="20" alt="videocard" style="vertical-align: middle;">&nbsp;&nbsp;
+                    NVIDIA® GeForce RTX™ 3060 6GB GDDR6
+                </li>
+                <li>
+                    <img onerror="this.style.display='none'"
+                        src="//afcs.dellcdn.com/csb/configux/bundles/1.0.5.25618/images/memory-blk.svg" width="20"
+                        height="20" alt="memory" style="vertical-align: middle;">&nbsp;&nbsp;
+                    32GB DDR4 2933MHz
+                </li>
+                <li>
+                    <img onerror="this.style.display='none'"
+                        src="//afcs.dellcdn.com/csb/configux/bundles/1.0.5.25618/images/harddrive-blk.svg" width="20"
+                        height="20" alt="harddrive" style="vertical-align: middle;">&nbsp;&nbsp;
+                    512GB (2x256 PCIe M.2 SSD) RAID0
+                </li>
+                <li>
+                    <img onerror="this.style.display='none'"
+                        src="//afcs.dellcdn.com/csb/configux/bundles/1.0.5.25618/images/color-blk.svg" width="20"
+                        height="20" alt="color" style="vertical-align: middle;">&nbsp;&nbsp;
+                    Lunar Light with High Endurance Clear Coat
+                </li>
+
+
+            </ul>
+
+        </div>
+
+
+        <div id="contact">
+            <b>
+                <div class="form">
+                    <h1 style="text-align: center;">Contact Us</h1>
+                    <form method="post" action="/contact">
+		{% csrf_token %}
+			<label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Name">
+
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email">
+        
+      <label for="phone">Phone Number</label>
+      <input type="phone" class="form-control" id="phone" name="phone" placeholder="Enter Your Phone Number">
+        
+      <label for="desc">Description</label>
+      <textarea class="form-control" id="desc" rows="3" name="desc" placeholder="Description"></textarea>
+        <br>
+        <a><button class="btn" type="submit">Submit</button></a>
+    </form>
+                </div>
+            </b>
+        </div>
+
+        <div id="more">
+            <center>
+                <h1>OTHER GAMING ACCESSORIES</h1><br>
+                <a href="https://www.amazon.in/Dell-Alienware-Advanced-Gaming-Mouse/dp/B089W9DFBS" target="_blank"><img
+                        src="static/mouse.png"></a>
+                <a href="https://www.amazon.in/Dell-Alienware-AW768-Gaming-Keyboard/dp/B072NHMYXX" target="_blank"><img
+                        src="static/keyboard.png"></a>
+                <a href="https://www.amazon.in/Alienware-Stereo-Gaming-Headset-310H/dp/B082X8LLP7" target="_blank"><img
+                        src="static/headset.png"></a>
+                <a href="https://www.dell.com/en-us/shop/alienware-extra-large-gaming-mouse-pad/apd/a9581761/gaming"
+                    target="_blank"><img src="static/pad.png"></a>
+            </center>
+        </div>
+    </div>
+    <a href="#home" id="up">&#8593;</a>
+    <br>
+</body>
+
+</html>
+<script>
+  var  up = document.getElementById('up');
+let images = ['static/1.jpg', 'static/2.jpg', 'static/3.jpg', 'static/4.jpg', 'static/5.jpg']
+
+function openNav() {
+    document.getElementById("sidebar").style.width = "250px";
+    document.getElementById("openbtn").style.marginLeft = "250px";
+    document.getElementById("openbtn").style.visibility = "hidden";
+}
+  
+function closeNav() {
+    document.getElementById("sidebar").style.width = "0";
+    document.getElementById("openbtn").style.marginLeft= "0";
+    document.getElementById("openbtn").style.visibility= "visible";
+}
+
+window.onscroll = function(){
+  if(document.documentElement.scrollTop > 18 || document.body.scrollTop > 18){
+    up.style.visibility = "visible";
+  }
+  else{
+    up.style.visibility = "hidden";
+  }
+}
+
+setInterval(function(){
+  let random = Math.floor(Math.random ()* 5);
+  image.src = images[random];
+},3000)
+</script>
+
+</html>
